@@ -4,7 +4,7 @@
 **Block all ads in a browserwindow.**  
 
 ```sh
-$ npm install --save is-ad
+$ npm install --save electron-ad-blocker
 ```
 
 ```js
