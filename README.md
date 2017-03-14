@@ -14,6 +14,13 @@ blockWindowAds(browserWindow);
 
 // You can also provide options, like so:
 blockWindowAds(browserWindow, {});
+
+// You can also use the adBlocker to provide custom rules as described in the brave ad-block.
+// (https://github.com/brave/ad-block) For example, blacklist a website:
+adBlocker.parse('||blacklistwebsite.com')
+// Check this page for rule info: https://adblockplus.org/filters.
+// This means you can also whitelist a website:
+adBlocker.parse('@@||whitelistwebsite.com');
 ```
 
 ### Rebuild the from source
