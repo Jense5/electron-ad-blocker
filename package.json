@@ -1,6 +1,6 @@
 {
   "name": "electron-ad-blocker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple util to block ads in an electron browser window",
   "repository": "https://github.com/Jense5/electron-ad-blocker.git",
   "author": "Jensen Bernard <jensenbernard5@gmail.com> (twitter.com/Jense5_)",
