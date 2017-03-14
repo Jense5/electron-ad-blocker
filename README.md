@@ -1,63 +1,25 @@
 
-<h1 align="center">Electron Ad Blocker</h1>
+# Electron Ad Blocker
 
-<p align="center">
-  <img src="https://image.flaticon.com/icons/svg/0/61.svg" width="150">
-</p>
-
-<h3 align="center" style="font-family:monospace">DEVELOPERS ONLY</h3>
-
-### Default scripts
+**Block all ads in a browserwindow.**  
 
 ```sh
-$ npm install           # Install dependencies 
-$ npm run build         # Build the source
-$ npm run build:watch   # Watch the build
-$ npm run test          # Run the tests
-$ npm run test:watch    # Watch the tests
-$ npm run cover         # Run the tests with coverage
-$ npm run cover:check   # Check if there is enough coverage
-$ npm run cover:report  # Push coverage report to codecov
-```
-
-### Setup Automated Releases
-
-```sh
-# Install the tools
-$ npm install -g semantic-release-cli
-$ npm install --save commitizen cz-conventional-changelog
-$ semantic-release-cli setup
-```
-
-```yml
-# Add script to Travis (replaces prepublish) and enable on the website
-# Also enable codecov for coverage
-branches:
-  only:
-    - master
-script:
-  - npm run cover
-  - npm run build
-after_success:
-  - npm run cover:report
+$ npm install --save is-ad
 ```
 
 ```js
-// Update package.json with bins
-{
-  "scripts": { "commit": "git-cz" },
-  "czConfig": { "path": "node_modules/cz-conventional-changelog" }
-}
+// import or use const blockWindowAds = require('electron-ad-blocker').default;
+import blockWindowAds from 'electron-ad-blocker';
+blockWindowAds(browserWindow);
+// Now all ads are blocked in this window!
 ```
+
+### Rebuild the from source
 
 ```sh
-# You can now commit with automated releases
-$ git add .
-$ npm run commit
+# This repo uses is-ad, which uses ad-block from the Brave browser.
+# Because this is written in c++ and compiled for node v51, you might
+# need to recompile it with electron rebuild after installation.
+$ npm install --save electron-rebuild
+$ ./node_modules/.bin/.electron-rebuild -f -w ad-block
 ```
-
-<br />
-<p align="center">
-  <a href="https://js.org" target="_blank" title="JS.ORG | JavaScript Community">
-  <img src="https://logo.js.org/dark_horz.png" width="102" alt="JS.ORG Logo"/></a>
-</p>
