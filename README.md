@@ -8,8 +8,8 @@ $ npm install --save electron-ad-blocker
 ```
 
 ```js
-// import or use const blockWindowAds = require('electron-ad-blocker').default;
-import blockWindowAds from 'electron-ad-blocker';
+// import or use const { blockWindowAds, adBlocker } = require('electron-ad-blocker').default;
+import { blockWindowAds, adBlocker } from 'electron-ad-blocker';
 blockWindowAds(browserWindow);
 
 // You can also provide options, like so:
