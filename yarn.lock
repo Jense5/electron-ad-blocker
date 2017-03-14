@@ -1525,9 +1525,9 @@ invariant@^2.2.0, invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-is-ad@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/is-ad/-/is-ad-0.0.2.tgz#d43e5353af4f84bfdebec24e3143191f7f4247af"
+is-ad@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/is-ad/-/is-ad-0.1.0.tgz#ab137eaad295e9bc762fb7ec12576d1f0b2cb014"
   dependencies:
     ad-block "^2.0.1"
     chalk "^1.1.3"
