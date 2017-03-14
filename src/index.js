@@ -11,7 +11,7 @@ const defaultOptions = {
 
 export default (browserWindow: any, userOptions: Object = {}) => {
   const options = Object.assign({}, defaultOptions, userOptions);
-  browserWindow.webContents.session.webResuest.onBeforeRequest(['*://*./*'], (details, callback) => {
+  browserWindow.webContents.session.webRequest.onBeforeRequest(['*://*./*'], (details, callback) => {
     const shouldBeBlocked = isAd(details.url);
     if (shouldBeBlocked) {
       if (options.verbose) { options.logger.log(`ADBLOCK blocked: ${details.url}`); }
