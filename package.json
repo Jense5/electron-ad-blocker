@@ -1,6 +1,6 @@
 {
   "name": "electron-ad-blocker",
-  "version": "0.0.0-dev.0",
+  "version": "0.0.1",
   "description": "Simple util to block ads in an electron browser window",
   "repository": "https://github.com/Jense5/electron-ad-blocker.git",
   "author": "Jensen Bernard <jensenbernard5@gmail.com> (twitter.com/Jense5_)",
@@ -19,9 +19,6 @@
     "build:watch": "npm run build && npm run build -- -w",
     "eslint": "eslint src test",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "pretest": "npm run eslint && npm run flow",
-    "test": "mocha test --compilers js:babel-core/register",
-    "test:watch": "npm run test -- -w",
     "prepublish": "npm run build"
   },
   "dependencies": {
