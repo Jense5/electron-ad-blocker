@@ -30,7 +30,7 @@ adBlocker.parse('@@||whitelistwebsite.com');
 # Because this is written in c++ and compiled for node v51, you might
 # need to recompile it with electron rebuild after installation.
 $ npm install --save electron-rebuild
-$ ./node_modules/.bin/.electron-rebuild -f -w ad-block
+$ ./node_modules/.bin/electron-rebuild -f -w ad-block
 ```
 
 ### Possible options
