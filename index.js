@@ -1,28 +1,28 @@
-// @flow
-
-import { initialize, isAd, client } from 'is-ad';
+const { initialize, containsAds, client } = require('contains-ads');
 
 initialize();
 
-const defaultOptions = {
-  verbose: true,
-  logger: console,
-  onRequest: undefined,
-};
+module.exports.adBlocker = client;
+module.exports.blockWindowAds = (browserWindow, opts) => {
 
-export const adBlocker = client;
+  const options = Object.assign({}, {
+    verbose: false,
+    logger: console,
+    onRequest: undefined,
+  }, opts);
 
-export const blockWindowAds = (browserWindow: any, userOptions: Object = {}) => {
-  const options = Object.assign({}, defaultOptions, userOptions);
-  browserWindow.webContents.session.webRequest.onBeforeRequest(['*://*./*'], (details, callback) => {
-    const shouldBeBlocked = isAd(details.url);
-    if (shouldBeBlocked && options.verbose) { options.logger.log(`ADBLOCK blocked: ${details.url}`); }
+  browserWindow.webContents.session.webRequest.onBeforeRequest(['*://*./*'], (details, cb) => {
+    const shouldBeBlocked = containsAds(details.url);
+
+    if (shouldBeBlocked && options.verbose)
+      options.logger.log('ADBLOCK blocked: ' + details.url);
+
     if (options.onRequest) {
-      options.onRequest(details, callback, shouldBeBlocked);
+      options.onRequest(details, cb, shouldBeBlocked);
     } else if (shouldBeBlocked) {
-      callback({ cancel: true });
+      cb({ cancel: true });
     } else {
-      callback({ cancel: false });
+      cb({ cancel: false });
     }
   });
 };
