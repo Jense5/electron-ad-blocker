@@ -1,65 +1,42 @@
 
-# Electron Ad Blocker
+# Electron ad blocker
 
-**Block all ads in a browserwindow.**  
+Blocks advertisements in an electron browser window.
+
+### Build from source
+
+Because this module contains native modules, it should build from source for the correct version of node of your electron distribution (and not the default one on your machine). If you know how to do this, you can skip this. [If not, I wrote a short tutorial for you](https://medium.com/@Jense5_/how-to-setup-electron-ad-blocker-c5d6ec8fb1d3).
+
+### Getting Started
 
 ```sh
-$ npm install --save electron-ad-blocker
+$ yarn add electron-ad-blocker
 ```
 
 ```js
-// import or use const { blockWindowAds, adBlocker } = require('electron-ad-blocker');
-import { blockWindowAds, adBlocker } from 'electron-ad-blocker';
-blockWindowAds(browserWindow);
+const { BrowserWindow } = require('electron');
+const { blockWindowAds, adBlocker } = require('electron-ad-blocker');
 
-// You can also provide options, like so:
-blockWindowAds(browserWindow, {});
+const options = {
+  verbose: true,
+  logger: console,
+};
 
-// You can also use the adBlocker to provide custom rules as described in the brave ad-block.
-// (https://github.com/brave/ad-block) For example, blacklist a website:
+const mainWindow = new BrowserWindow({ width: 800, height: 600 });
+blockWindowAds(mainWindow, options);
+
+// You can also blacklist other websites, since adBlocker is the
+// client instance of the contains-ads module.
 adBlocker.parse('||blacklistwebsite.com')
-// Check this page for rule info: https://adblockplus.org/filters.
-// This means you can also whitelist a website:
-adBlocker.parse('@@||whitelistwebsite.com');
-```
-
-### Rebuild the from source
-
-```sh
-# This repo uses is-ad, which uses ad-block from the Brave browser.
-# Because this is written in c++ and compiled for node v51, you might
-# need to recompile it with electron rebuild after installation.
-$ npm install --save electron-rebuild
-$ ./node_modules/.bin/electron-rebuild -f -w ad-block
 ```
 
 ### Possible options
 
-##### Verbose
-
-`Default: true`
-
-Whether or not the Ad Blocker should log when he blocks a request.
-
-##### Logger
-
-``Default: console``
-
-Optional logger that will be used. Uses the `.log` function as in `console.log()`. If you want to use
-winston, make sure to wrap it: `{ logger: { log: (...params) => winston.info(...params) } }`.
-
-##### onRequest
-
-``Default: undefined``
-
-Optional function that will be called instead of the callback. This is useful if you still want to
-define your own onRequest function for the electron session. An extra parameter is added, which is
-`shouldBeBlocked`.
-
-#### Example
+`logger` (`console`): A custom logger instance to use.  
+`verbose` (`false`): Whether or not the ad blocker should log when he blocks a request.  
+`onRequest` (`undefined`): Gets called like the original `onRequest` of a `BrowserWindow` instance.
 
 ```js
-
 blockWindowAds(browserWindow, {
   verbose: true,
   logger: console,
@@ -67,5 +44,4 @@ blockWindowAds(browserWindow, {
     // Execute your own onRequest function here...
   },
 });
-
 ```
